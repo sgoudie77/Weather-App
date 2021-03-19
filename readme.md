@@ -1,4 +1,4 @@
-# 360 Weather App
+# Weather App
 
 #### Description:
 
