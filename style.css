@@ -54,6 +54,7 @@ header button {
   outline: none;
 }
 
+/* new buttons styling starts here */
 .current button {
   font-family: 'Poppins';
   font-weight: 600;
@@ -80,6 +81,7 @@ header input:focus,
 header button:focus {
   background-color: rgba(255, 255, 255, 0.7);
 }
+/* new buttons styling ends here */
 
 main {
   flex: 1 1 100%;
