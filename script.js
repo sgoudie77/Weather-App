@@ -36,7 +36,7 @@ function displayResults (weather) {
 
     //default
     temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
-    state = 'celsuis';
+    state = 'celsius';
 
     //display background image to match the search term
     //document.body.style.background = "url('https://source.unsplash.com/1600x900/?" + city + "')";
@@ -52,7 +52,7 @@ function displayResults (weather) {
             temp.innerHTML = `${Math.round(tempImperial)}<span>°F</span>`;
             hilow.innerText = `${Math.round(tempImperialLow)}°F / ${Math.round(tempImperialHi)}°F`;
             state = 'fahrenheit';
-        } else if (state != 'celsuis') {
+        } else if (state != 'celsius') {
             temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
             hilow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
             state = 'celsius';
