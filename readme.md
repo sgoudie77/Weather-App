@@ -20,10 +20,4 @@ This weather app allows users to display the current temperature and weather con
 
 #### Acknowledgements:
 
-The code for this weather app was based on YouTube tutorials by Dev Ed and Tyler Potts, which will be enhanced by changing some of the styles and adding additional functionality, such as:
-
-- default displays based on the user's location
-- add a button for a C/F degree converter
-- images that change according to the current weather
-- weather icons to match the current weather
-- background image to change according to search term
+The code for this weather app was based on YouTube tutorials by Dev Ed and Tyler Potts, which will be enhanced by changing some of the styles and adding additional functionality.

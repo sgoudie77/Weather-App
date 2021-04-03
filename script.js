@@ -39,7 +39,7 @@ function displayResults (weather) {
     state = 'celsius';
 
     //display background image to match the search term
-    //document.body.style.background = "url('https://source.unsplash.com/1600x900/?" + city + "')";
+    document.body.style.background = "url('https://source.unsplash.com/1600x900/?" + weather.weather[0].main + "')";
 
     //formula to change celsius to fahrenheight
     let tempImperial = (weather.main.temp + 32) * (9 / 5);
@@ -50,11 +50,11 @@ function displayResults (weather) {
     temp.addEventListener('click', () => {
         if (state != 'fahrenheit') {
             temp.innerHTML = `${Math.round(tempImperial)}<span>°F</span>`;
-            hilow.innerText = `${Math.round(tempImperialLow)}°F / ${Math.round(tempImperialHi)}°F`;
+            hilow.innerText = `Hi ${Math.round(tempImperialLow)}°F / Low ${Math.round(tempImperialHi)}°F`;
             state = 'fahrenheit';
         } else if (state != 'celsius') {
             temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
-            hilow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+            hilow.innerText = `Hi ${Math.round(weather.main.temp_min)}°C / Low ${Math.round(weather.main.temp_max)}°C`;
             state = 'celsius';
         }   
     })
@@ -65,7 +65,7 @@ function displayResults (weather) {
     //         temp.innerHTML = `${Math.round(tempImperial)}<span>°F</span>`;
     //         hilow.innerText = `${Math.round(tempImperialLow)}°F / ${Math.round(tempImperialHi)}°F`;
     //         state = 'fahrenheit';
-    //     } else if (state != 'celsuis') {
+    //     } else if (state != 'celsius') {
     //         temp.innerHTML = `${Math.round(weather.main.temp)}<span>°C</span>`;
     //         hilow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
     //         state = 'celsius';
@@ -73,21 +73,14 @@ function displayResults (weather) {
     // })
 
     //weather icons
-    let weather_icon = document.querySelector('.current .icon');
-    weather_icon = weather.weather[0].icon;
-    //document.querySelector('.current .icon').src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    //const {icon} = weather.weather[0].icon;
-    //weather_icon.innerHTML = `<img src="icons/${icon}.png">;`
-    //weather_icon.innerHTML = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    //weather_icon.innerHTML = `{"http://openweathermap.org/img/wn/" + ${icon} + "@2x.png"};`
-    //.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
-    //document.querySelector('.current .icon').src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    let icon = weather.weather[0].icon;
+    document.querySelector('.current .icon').src = "http://openweathermap.org/img/wn/" + icon + ".png";
 
     let weather_el = document.querySelector('.current .weather');
     weather_el.innerText = weather.weather[0].main;
 
     let hilow = document.querySelector('.hi-low');
-    hilow.innerText = `${Math.round(weather.main.temp_min)}°C / ${Math.round(weather.main.temp_max)}°C`;
+    hilow.innerText = `Hi ${Math.round(weather.main.temp_min)}°C / Low ${Math.round(weather.main.temp_max)}°C`;
 }
 
 function dateBuilder (d) {
@@ -103,65 +96,60 @@ function dateBuilder (d) {
 }
 
 
-
 //OpenCage Geocoding API
 
 let geocode = {
     reverseGeocode: function (latitude, longitude) {
         var apikey = '984afab3ddba4423808ae7f15473f6b8';
 
-var api_url = 'https://api.opencagedata.com/geocode/v1/json'
+        var api_url = 'https://api.opencagedata.com/geocode/v1/json'
 
-var request_url = api_url
-  + '?'
-  + 'key=' + apikey
-  + '&q=' + encodeURIComponent(latitude + ',' + longitude)
-  + '&pretty=1'
-  + '&no_annotations=1';
+        var request_url = api_url
+        + '?'
+        + 'key=' + apikey
+        + '&q=' + encodeURIComponent(latitude + ',' + longitude)
+        + '&pretty=1'
+        + '&no_annotations=1';
 
-// see full list of required and optional parameters:
-// https://opencagedata.com/api#forward
+        var request = new XMLHttpRequest();
+        request.open('GET', request_url, true);
 
-var request = new XMLHttpRequest();
-request.open('GET', request_url, true);
+        request.onload = function() {
+  
 
-request.onload = function() {
-  // see full list of possible response codes:
-  // https://opencagedata.com/api#codes
+        if (request.status === 200){ 
+            // Success!
+            var data = JSON.parse(request.responseText);
+            getResults(data.results[0].components.city);
+        } else if (request.status <= 500){ 
+            // We reached our target server, but it returned an error
+                                
+            console.log("unable to geocode! Response code: " + request.status);
+            var data = JSON.parse(request.responseText);
+            console.log('error msg: ' + data.status.message);
+        } else {
+            console.log("server error");
+        }
+    };
 
-  if (request.status === 200){ 
-    // Success!
-    var data = JSON.parse(request.responseText);
-    getResults(data.results[0].components.city);
-  } else if (request.status <= 500){ 
-    // We reached our target server, but it returned an error
-                         
-    console.log("unable to geocode! Response code: " + request.status);
-    var data = JSON.parse(request.responseText);
-    console.log('error msg: ' + data.status.message);
-  } else {
-    console.log("server error");
-  }
-};
+    request.onerror = function() {
+    // There was a connection error of some sort
+    console.log("unable to connect to server");        
+    };
 
-request.onerror = function() {
-  // There was a connection error of some sort
-  console.log("unable to connect to server");        
-};
-
-request.send();  // make the request
+    request.send();  // make the request
     },
-getLocation: function () {
-    function success (data) {
-        geocode.reverseGeocode(data.coords.latitude, data.coords.longitude);
+    getLocation: function () {
+        function success (data) {
+            geocode.reverseGeocode(data.coords.latitude, data.coords.longitude);
+        }
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, console.error);
+        }
+        else {
+            getResults();
+        }
     }
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, console.error);
-    }
-    else {
-        getResults();
-    }
-}
 };
 
 geocode.getLocation();

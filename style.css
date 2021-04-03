@@ -9,6 +9,8 @@
 body {
   font-family: "Poppins", sans-serif;
   background: url('https://source.unsplash.com/1600x900/?weather');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .app-wrap {
@@ -19,7 +21,7 @@ body {
   margin: 0 auto;
   background: #000000d0;
   border-radius: 10px;
-  margin-top: 60px;
+  margin-top: 50px;
 }
 
 header {
@@ -44,6 +46,7 @@ header input {
   transition: 0.2s ease-out;
 }
 
+/* new buttons styling starts here */
 header button {
   width: 3.2em;
   height: 3.2em;
@@ -52,9 +55,9 @@ header button {
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.5);
   outline: none;
+  cursor: pointer;
 }
 
-/* new buttons styling starts here */
 .current button {
   font-family: 'Poppins';
   font-weight: 600;
@@ -66,6 +69,7 @@ header button {
   outline: none;
   border: none;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 header button:hover,
@@ -74,14 +78,14 @@ header button:hover,
 }
 
 .fa-search {
-  font-size: 22px;
+  font-size: 18px;
 }
 
 header input:focus,
 header button:focus {
   background-color: rgba(255, 255, 255, 0.7);
 }
-/* new buttons styling ends here */
+/* buttons styling ends here */
 
 main {
   flex: 1 1 100%;
@@ -110,6 +114,7 @@ main {
   font-weight: 900;
   margin: 20px 0px;
   text-shadow: 2px 5px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
 }
 
 .current .temp span {
@@ -120,9 +125,14 @@ main {
   color: #fff;
   font-size: 32px;
   font-weight: 700;
-  font-style: italic;
   margin-bottom: 15px;
   text-shadow: 0px 3px rgba(0, 0, 0, 0.4);
+  margin-left: 10px;
+  padding-top: 15px;
+}
+
+#condition {
+  display: flex;
 }
 
 .current .hi-low {

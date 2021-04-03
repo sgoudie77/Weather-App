@@ -9,24 +9,25 @@
 </head>
 <body>
     <div class="app-wrap">
-       <header>
+        <header>
            <input type="text" autocomplete="off" class="search-box" placeholder="Type any city..." />
            <button class="search-box"><i class="fa fa-search" aria-hidden="true"></i></button>
-       </header> 
-       <main>
-           <section class="location">
-               <div class="city">City, Country</div>
-               <div class="date">Date, Year</div>
-           </section>
-           <div class="current">
-               <div class="temp">Temp<span>°c</span></div>
-               <!-- added the converter button -->
-               <button>Convert: C/F</button>
-               <div class="icon"></div>
-               <div class="weather">Weather</div>
-               <div class="hi-low">Hi°c / Low°c</div>
-           </div>
-       </main>
+        </header> 
+        <main>
+            <section class="location">
+                <p class="city">City, Country</p>
+                <p class="date">Date, Year</p>
+            </section>
+            <div class="current">
+                <p class="temp">Temp<span>°c</span></p>
+                <button>Convert: C/F</button>
+                <div id="condition">
+                    <img class="icon"></img>
+                    <p class="weather">Weather</p>
+                </div>
+                <p class="hi-low">Hi°c / Low°c</p>
+            </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
