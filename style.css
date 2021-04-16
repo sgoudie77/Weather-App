@@ -155,10 +155,14 @@ main {
 @media (max-width: 1015px) {
   .app-wrap {
     margin-top: 25px;
+    width: 40%;
   }
 }
 
 @media (max-width: 981px) {
+  .app-wrap {
+    width: 40%;
+  }
   header input {
     max-width: 70%;
   }
@@ -167,6 +171,7 @@ main {
 @media (max-width: 830px) {
   .app-wrap {
     margin-top: 50px;
+    width: 45%;
   }
   .location .city {
     font-size: 25px;
@@ -183,6 +188,9 @@ main {
 }
 
 @media (max-width: 705px) {
+  .app-wrap {
+    width: 50%;
+  }
   header input {
     max-width: 60%;
   }
@@ -194,5 +202,6 @@ main {
 @media (max-width: 635px) {
   .app-wrap {
     margin-top: 25px;
+    width: 60%;
   }
 }
