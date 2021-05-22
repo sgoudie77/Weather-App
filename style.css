@@ -190,6 +190,7 @@ main {
 @media (max-width: 705px) {
   .app-wrap {
     width: 50%;
+    margin-top: 10%;
   }
   header input {
     max-width: 60%;
@@ -201,7 +202,14 @@ main {
 
 @media (max-width: 635px) {
   .app-wrap {
-    margin-top: 25px;
+    margin-top: 15%;
     width: 60%;
+  }
+}
+
+@media (max-width: 500px) {
+  .app-wrap {
+    margin-top: 10%;
+    width: 75%;
   }
 }
