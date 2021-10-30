@@ -12,6 +12,7 @@ body {
   background: url('https://source.unsplash.com/1600x900/?weather');
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }
 /* global styles start here */
 
